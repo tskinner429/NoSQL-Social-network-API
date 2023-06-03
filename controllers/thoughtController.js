@@ -39,7 +39,7 @@ const thoughtController = {
         Thought.create(req.body)
         .then((_id) => {
             return User.findOneAndUpdate(
-            {_id: req.params.id},
+            {_id: req.body.userId},
             {$push: {thoughts: _id}},
             {new: true}
             )
@@ -107,7 +107,7 @@ const thoughtController = {
     deleteReaction(req, res) {
         Thought.findOneAndUpdate(
             {_id: req.params.id},
-            {$pull: {reactions: {reactionId: req.parans.reactionId}}},
+            {$pull: {reactions: {reactionId: req.params.reactionId}}},
             {new: true}
         )
         .then((reactionData) => {
