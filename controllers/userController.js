@@ -38,6 +38,7 @@ const userController = {
         })
     },
     createUser(req, res) {
+        console.log("create user")
         User.create(req.body)
         .then((userData) => {
             res.json(userData)
